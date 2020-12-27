@@ -23,5 +23,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', views.index),
     path('addCards/', views.create_dtp),
-    path('allIncidents/', views.allIncident)
+    path('allIncidents/', views.allIncident),
+    path('allIncidents/<int:id>', views.thIncident)
 ]

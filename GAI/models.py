@@ -39,5 +39,5 @@ class cards(models.Model):
     died_count = models.IntegerField()
     injured_count = models.IntegerField()
     car = models.ForeignKey(cars, on_delete=models.CASCADE)
-    Погода = models.ForeignKey(conditionals, on_delete=models.CASCADE)
-    Причины = models.ManyToManyField(reasons_DTP)
+    weather = models.ForeignKey(conditionals, on_delete=models.CASCADE)
+    prichiny = models.ManyToManyField(reasons_DTP)

@@ -36,12 +36,12 @@
 					<p class="card-text mb-0">Тип ДТП: {{ i.incident.name }}</p>
 					<p class="card-text mb-0">Место ДТП: {{ i.place}}</p>
 					<p class="card-text">Причины ДТП:
-                    {% for j in i.Причины.all %}
+                    {% for j in i.prichiny.all %}
                         {{ j.name }}
                     {% endfor %}
                     </p>
 		
-					<a href="#" class="btn btn-light btn-block">Подробнее</a>
+					<a href="{{i.id}}" class="btn btn-light btn-block">Подробнее</a>
 				</div>
                 {% endfor %}
 			</div>

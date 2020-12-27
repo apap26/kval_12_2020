@@ -57,7 +57,7 @@ def create_dtp(request):
                                     .filter(license_number = license_number), died_count=death_toll,
                                 injured_count=number_wounded, conditional_id=2)
             card.save()
-            card.Причины.add()
+            card.prichiny.add()
             card.save()
 
 
@@ -65,4 +65,8 @@ def allIncident(request):
     allIncident = models.cards.objects.all()
     return render(request, "allIncidents.html", {"data":allIncident})
 
+
+def thIncident(request, id):
+    card = models.cards.objects.all().filter(id=id)
+    return render(request, "aboutRoadAccident.html", {"card":card[0]})
 # Create your views here.
