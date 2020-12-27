@@ -22,6 +22,7 @@ def create_dtp(request):
         elif(request.POST.get('step') == "1"):
             auto_mark = request.POST.get("auto_mark")
 
+
 def allIncident(request):
     allIncident = models.cards.objects.all()
     return render(request, "allIncidents.html", {"data":allIncident})

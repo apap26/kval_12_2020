@@ -11,31 +11,39 @@
 		<div class="container">
 			<div class="row">						
 				<div class="alert alert-success alert-dismissible fade show w-100 p-3" role="alert">
-					Найдено записей {number}
+					Найдено записей {{ data.count }}
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+                {% if false %}
 				<div class="alert alert-danger alert-dismissible fade show w-100 p-3" role="alert">
 					Произошла ошибка {message}
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
+                {% endif %}
 			</div>
 			<hr class="mb-4">
 			<div class="card mb-2">
+                {%  for i in data %}
 				<div class="card-body">
-					<h5 class="card-title"><span class="badge badge-primary mr-2">№ 228</span>Место ДТП</h5>
-					<p class="card-text">Какое-то описание.</p>
-					<p class="card-text mb-0">Сотрудник: <a href="">Ауе И. В.</a></p>
-					<p class="card-text">Добавлено: 01 ноября 2017 09:03</p>
-					<p class="card-text mb-0">Произошло: 03 ноября 2017 19:09</p>
-					<p class="card-text mb-0">Место ДТП: Пермь</p>
-					<p class="card-text">Вид ДТП: жоский</p>
+					<h5 class="card-title"><span class="badge badge-primary mr-2">№ {{ i.id }}</span>{{i.place}}</h5>
+					<p class="card-text">Какое-то описание... jncencndetn</p>
+					<!--<p class="card-text mb-0">Сотрудник: <a href="">Ауе И. В.</a></p>-->
+					<p class="card-text">Добавлено: {{ i.date }}</p>
+					<p class="card-text mb-0">Тип ДТП: {{ i.incident.name }}</p>
+					<p class="card-text mb-0">Место ДТП: {{ i.place}}</p>
+					<p class="card-text">Причины ДТП:
+                    {% for j in i.reasons.all %}
+                        {{ j.name }}
+                    {% endfor %}
+                    </p>
 		
 					<a href="#" class="btn btn-light btn-block">Подробнее</a>
 				</div>
+                {% endfor %}
 			</div>
 		</div>
 	</div>
