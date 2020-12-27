@@ -57,7 +57,8 @@ def create_dtp(request):
                                     .filter(license_number = license_number), died_count=death_toll,
                                 injured_count=number_wounded, conditional_id=2)
             card.save()
-
+            card.Причины.add()
+            card.save()
 
 
 def allIncident(request):

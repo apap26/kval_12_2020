@@ -36,7 +36,7 @@
 					<p class="card-text mb-0">Тип ДТП: {{ i.incident.name }}</p>
 					<p class="card-text mb-0">Место ДТП: {{ i.place}}</p>
 					<p class="card-text">Причины ДТП:
-                    {% for j in i.reasons.all %}
+                    {% for j in i.Причины.all %}
                         {{ j.name }}
                     {% endfor %}
                     </p>
