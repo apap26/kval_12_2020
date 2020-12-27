@@ -22,26 +22,23 @@
 					</button>
 				</div>
 				<form class="w-100 p-3" method="POST">
+                    {% csrf_token %}
 					<input type="hidden" step="0">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Учётный номер карточки</label>
-						<input name="number" type="email" class="form-control" aria-describedby="emailHelp" required>
+						<input name="card_number" type="joycasino" class="form-control" aria-describedby="emailHelp" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Дата ДТП</label>
-						<input name="dateIncident" type="date" class="form-control" required>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputPassword1">Время ДТП</label>
-						<input name="timeIncident" type="time" class="form-control" required>
+						<input name="date" type="datetime-local" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Место ДТП</label>
-						<input name="locateIncident" type="text" class="form-control" required>
+						<input name="place" type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Вид ДТП</label>
-						<input name="typeIncident" type="text" class="form-control" required>
+						<input name="type" type="text" class="form-control" required>
 					</div>
 					<button name="next1" type="submit" class="btn btn-primary">Далее</button>
 				</form>

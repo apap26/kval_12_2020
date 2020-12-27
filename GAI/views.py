@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
+from GAI import models
+
 
 @login_required
 def index(request):
@@ -22,6 +24,9 @@ def create_dtp(request):
             responce.set_cookie("type_dtp", type_dtp)
             return responce
         elif(request.POST.get('step') == "1"):
-            auto_mark = "as"
+            auto_mark = request.POST.get("auto_mark")
 
+def allIncident(request):
+    allIncident = models.cards.objects.all()
+    return render(request, "allIncidents.html", {"data":allIncident})
 # Create your views here.

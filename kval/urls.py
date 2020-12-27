@@ -21,5 +21,7 @@ from GAI import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', views.index)
+    path('', views.index),
+    path('addCards/', views.create_dtp),
+    path('allIncidents/', views.allIncident)
 ]
