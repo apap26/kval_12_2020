@@ -31,7 +31,25 @@
 					</button>
 				</div>						
 				<form class="w-100 p-3" method="POST">
+					{% csrf_token %}
+
 					<input type="hidden" step="3">
+
+					<input type="hidden" name="card_number" value={{card_number}}>
+					<input type="hidden" name="date" value={{date}}>
+					<input type="hidden" name="place" value={{place}}>
+					<input type="hidden" name="type" value={{type}}>
+					<input type="hidden" name="mark" value={{mark}}>
+					<input type="hidden" name="stateNumber" value={{stateNumber}}>
+					<input type="hidden" name="secondName" value={{secondName}}>
+					<input type="hidden" name="firstName" value={{firstName}}>
+					<input type="hidden" name="middleName" value={{middleName}}>
+					<input type="hidden" name="weather" value={{weather}}>
+					<input type="hidden" name="roadConditions" value={{roadConditions}}>
+					<input type="hidden" name="listParticipants" value={{listParticipants}}>
+					<input type="hidden" name="actionsParticipants" value={{actionsParticipants}}>
+					<input type="hidden" name="identifiedCauses" value={{identifiedCauses}}>
+
 					<div class="form-group">
 						<label for="exampleInputEmail1">Количество раненых</label>
 						<input name="numberWounded" type="number" min="0" class="form-control" aria-describedby="emailHelp" required>

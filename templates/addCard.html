@@ -22,8 +22,10 @@
 					</button>
 				</div>
 				<form class="w-100 p-3" method="POST">
-                    {% csrf_token %}
-					<input type="hidden" step="0">
+					{% csrf_token %}
+					
+					<input type="hidden" name="step" value="0">
+
 					<div class="form-group">
 						<label for="exampleInputEmail1">Учётный номер карточки</label>
 						<input name="card_number" type="joycasino" class="form-control" aria-describedby="emailHelp" required>

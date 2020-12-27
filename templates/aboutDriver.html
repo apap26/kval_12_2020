@@ -22,8 +22,16 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form class="w-100 p-3" method="POST">					
-					<input type="hidden" step="1">
+				<form class="w-100 p-3" method="POST">	
+					{% csrf_token %}
+
+					<input type="hidden" name="step" value="1">
+
+					<input type="hidden" name="card_number" value={{card_number}}>
+					<input type="hidden" name="date" value={{date}}>
+					<input type="hidden" name="place" value={{place}}>
+					<input type="hidden" name="type" value={{type}}>
+
 					<div class="form-group">
 						<label for="exampleInputEmail1">Марка автомобиля</label>
 						<input name="mark" type="text" class="form-control" aria-describedby="emailHelp" required>
