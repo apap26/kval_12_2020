@@ -6,7 +6,7 @@ from GAI import models
 
 @login_required
 def index(request):
-    return render(request, "home.html", {})
+    return render(request, "index.html", {})
 
 def create_dtp(request):
     if (request.method == "GET"):
@@ -29,4 +29,5 @@ def create_dtp(request):
 def allIncident(request):
     allIncident = models.cards.objects.all()
     return render(request, "allIncidents.html", {"data":allIncident})
+
 # Create your views here.
