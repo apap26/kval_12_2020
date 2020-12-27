@@ -13,7 +13,8 @@ def index(request):
 def create_dtp(request):
     if (request.method == "GET"):
         type_list = models.type_incident.objects.all()
-        return render(request, "addCard.html", {"types":type_list})
+        weather = models.conditionals.objects.all()
+        return render(request, "addCard.html", {"types":type_list, "weather":weather})
     elif request.method == "POST":
         marks = models.cars_brand.objects.all()
         if(request.POST.get('step') == "0"):
@@ -44,21 +45,22 @@ def create_dtp(request):
             card_number = request.POST.get("card_number")
             date_time = request.POST.get("date")
             place = request.POST.get("place")
-            type_dtp = request.POST.get("type")
+            type_dtp = int(request.POST.get("type"))
             auto_mark = request.POST.get("auto_mark")
             state_number = request.POST.get("stateNumber")
             license_number = request.POST.get("licenseNumber")
             number_wounded = request.POST.get("numberWounded")
             death_toll = request.POST.get("deathToll")
-            date_time_d = datetime.datetime.strptime(date_time,"%Y-%m-%dT%H:%M")
-            card = models.cards(date=date_time_d, place=place, incident=models.type_incident.objects.get(int(type_dtp)),
+            date_time_d = datetime.datetime.strptime(date_time, "%Y-%m-%dT%H:%M")
+            incedet = models.type_incident.objects.get(id=type_dtp) # какого хрена?
+            card = models.cards(date=date_time_d, place=place, incident=incedet,
                                 car=models.cars.objects.all()
-                                    .filter(plate_number=state_number), driver=models.drivers.objects.all()
-                                    .filter(license_number = license_number), died_count=death_toll,
-                                injured_count=number_wounded, conditional_id=2)
+                                    .filter(plate_number=state_number)[0], driver=models.drivers.objects.all()
+                                    .filter(license_number = license_number)[0], died_count=death_toll,
+                                injured_count=int(number_wounded), weather=models.conditionals.objects.get(id=1))
             card.save()
-            card.prichiny.add()
-            card.save()
+            return render(request, "casualties.html", {"succes":True})
+            #card.save()
 
 
 def allIncident(request):

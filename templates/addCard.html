@@ -41,8 +41,8 @@
 					<div class="form-group">
 						<label for="exampleInputPassword1">Погода в момент ДТП</label>
 						<select name="Погода" class="form-control" required>
-                            {% for i in Погода %}
-							    <option value="{{ i.id }}">{{ i.Погода }}</option>
+                            {% for i in weather %}
+							    <option value="{{ i.id }}">{{ i.name }}</option>
                             {% endfor %}
 						</select>
 					</div>
