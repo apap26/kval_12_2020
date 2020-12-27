@@ -22,10 +22,11 @@
 					<p class="card-text mb-0">Имя: {{ card.driver.name }}</p>
 					<p class="card-text">Отчество: {{ card.driver.otchestvo }}</p>
 					<p class="card-text mb-0">Описание погодных и дорожных условий: {{ card.weather.name }}</p>
-
-					<p class="card-text">Выявленные на месте причины ДТП: Саша</p>
-					<p class="card-text mb-0">Количество раненых: 228</p>
-					<p class="card-text">Количество погибших: -5</p>
+					<p class="card-text">Выявленные на месте причины ДТП: {% for i in card.prichiny.all %}
+                        {{ i.name }}
+                    {% endfor %}</p>
+					<p class="card-text mb-0">Количество раненых: {{card.injured_count}}</p>
+					<p class="card-text">Количество погибших: {{ card.died_count }}</p>
 					
 				</div>
 			</div>
