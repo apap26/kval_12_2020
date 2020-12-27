@@ -1,6 +1,7 @@
 import datetime
 
 from django.contrib.auth.decorators import login_required
+from django.forms import forms
 from django.shortcuts import render
 
 from GAI import models
@@ -33,13 +34,17 @@ def create_dtp(request):
             auto_mark = request.POST.get("auto_mark")
             state_number = request.POST.get("stateNumber")
             license_number = request.POST.get("licenseNumber")
+
+            prichiny = models.reasons_DTP.objects.all()
+
             context = {"card_number":card_number, "date":date_time, "place":place, "type":type_dtp, "stateNumber":state_number,
-                       "mark":auto_mark, "licenseNumber":license_number}
-            if(models.drivers.objects.all().filter(license_number = license_number).exists()):
+                       "mark":auto_mark, "licenseNumber":license_number, "prichiny":prichiny}
+            if(models.drivers.objects.all().filter(license_number = license_number).exists() and
+            models.cars.objects.all().filter(plate_number=state_number)):
                 return render(request, "casualties.html", context)
             else:
                 context['marks'] = marks
-                context['error'] = "Водительское удостоверение не найдено"
+                context['error'] = "Водительское удостоверение или автомобиь не найдены"
                 return render(request, "aboutDriver.html", context)
         elif(request.POST.get('step') == "2"):
             card_number = request.POST.get("card_number")
@@ -51,13 +56,23 @@ def create_dtp(request):
             license_number = request.POST.get("licenseNumber")
             number_wounded = request.POST.get("numberWounded")
             death_toll = request.POST.get("deathToll")
+
+
+            dfbj = models.reasons_DTP.objects.all()
+            selects = []
+            for r in dfbj:
+                selects.append([r, True if request.POST.get("HB"+str(r.id)) != None else False])
             date_time_d = datetime.datetime.strptime(date_time, "%Y-%m-%dT%H:%M")
-            incedet = models.type_incident.objects.get(id=type_dtp) # какого хрена?
+            incedet = models.type_incident.objects.get(id=type_dtp)
             card = models.cards(date=date_time_d, place=place, incident=incedet,
                                 car=models.cars.objects.all()
                                     .filter(plate_number=state_number)[0], driver=models.drivers.objects.all()
                                     .filter(license_number = license_number)[0], died_count=death_toll,
                                 injured_count=int(number_wounded), weather=models.conditionals.objects.get(id=1))
+            card.save()
+            for i in selects:
+                if i[1] == True:
+                    card.prichiny.add(i[0])
             card.save()
             return render(request, "casualties.html", {"succes":True})
             #card.save()
