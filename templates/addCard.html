@@ -41,7 +41,9 @@
 					<div class="form-group">
 						<label for="exampleInputPassword1">Вид ДТП</label>
 						<select name="type" class="form-control" required>
-							<option value="">Название</option>
+                            {% for i in types %}
+							    <option value="{{ i.id }}">{{ i.name }}</option>
+                            {% endfor %}
 						  </select>
 					</div>
 					
