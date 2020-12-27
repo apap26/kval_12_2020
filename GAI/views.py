@@ -10,10 +10,18 @@ def create_dtp(request):
     if (request.method == "GET"):
         return render(request, "addCard.html", {})
     elif request.method == "POST":
-        card_number = request.POST.get("card_number")
-        dateTime = request.POST.get("date")
-        place = request.POST.get("place")
-        type_dtp = request.POST.get("type")
-
+        if(request.POST.get('step') == "0"):
+            card_number = request.POST.get("card_number")
+            dateTime = request.POST.get("date")
+            place = request.POST.get("place")
+            type_dtp = request.POST.get("type")
+            responce = render(request, "aboutDriver.html", {})
+            responce.set_cookie("card_number", card_number)
+            responce.set_cookie("dateTime", dateTime)
+            responce.set_cookie("place", place)
+            responce.set_cookie("type_dtp", type_dtp)
+            return responce
+        elif(request.POST.get('step') == "1"):
+            auto_mark = "as"
 
 # Create your views here.
