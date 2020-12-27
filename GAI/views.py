@@ -17,11 +17,7 @@ def create_dtp(request):
             dateTime = request.POST.get("date")
             place = request.POST.get("place")
             type_dtp = request.POST.get("type")
-            responce = render(request, "aboutDriver.html", {})
-            responce.set_cookie("card_number", card_number)
-            responce.set_cookie("dateTime", dateTime)
-            responce.set_cookie("place", place)
-            responce.set_cookie("type_dtp", type_dtp)
+            responce = render(request, "aboutDriver.html", {"card_number":card_number, "date":dateTime, "place":place, "type":type_dtp})
             return responce
         elif(request.POST.get('step') == "1"):
             auto_mark = request.POST.get("auto_mark")
